@@ -1,0 +1,7 @@
+{% load humanize %}
+{% for box in boxes %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'card:box' box.box_number%}">
+      {{box.box_number | ordinal}} Box <mark>{{box.card_count}}</mark></a>
+  </li>
+{% endfor %}

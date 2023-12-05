@@ -1,0 +1,14 @@
+{% extends "card/base.html" %}
+{% load humanize %}
+{% block content %}
+    <div class="bg-body-primary p-2 rounded text-center">
+        <h3>{{box_number | ordinal}} Box</h3>
+        <mark>{{object_list | length }}</mark> Card{{object_list | pluralize}} left in box
+    </div>
+    
+    {% if  check_card%}
+        {% with card=check_card %}
+            {% include "card/card.html" %}
+        {% endwith %}
+    {% endif %}
+{% endblock content %}

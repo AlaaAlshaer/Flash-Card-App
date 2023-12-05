@@ -1,0 +1,37 @@
+{% extends "card/base.html" %}
+{% load humanize %}
+{% block content %}
+  <div class="w-100 m-auto">
+        <h1 class="h3 mb-3">
+          {% if card %}
+          Edit Card
+          {% else %}
+          Create New Card
+          {% endif %}
+          
+        </h1>
+        <form class="form-signin w-100 m-auto" method="post">
+            {% csrf_token %}
+            <div class="form-floating">
+              <input class="form-control" type="text" name="question" maxlength="100" required="" id="id_question" value="{{card.question}}">
+              <label for="id_question">Question:</label>    
+            </div>
+
+            <div class="form-floating">
+                <input required="" type="text" name ="answer" class="form-control" id="id_answer" value="{{card.answer}}">
+                <label for="id_answer">Answer</label>
+            </div>
+
+            <div class="form-floating">
+              <select class="form-select" name="box" required="" id="id_box">
+                {% for option in form.box %}
+                  {{option}}
+                {% endfor %}
+              </select>
+              <label for="id_box">Box:</label>
+            <div> 
+            <button class="btn btn-primary m-2" type="submit">Save Card</button>
+        </form>
+        <a class="btn btn-outline-secondary m-2" href="{% url "card:card-list" %}">cancel</a>
+  </div>
+{% endblock content %}
